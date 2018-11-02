@@ -5,9 +5,6 @@ const client = new Discord.Client();
 const { token } = require('./config');
 require('dotenv-flow').config();
 
-// I kept the config.json file even though I will be using .env for the rest of the series
-// only so you can see and know the differnce.
-
 client.commands = new Enmap();
 
 // client.on('ready', () => {
