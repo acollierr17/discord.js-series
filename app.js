@@ -4,9 +4,6 @@ const Enmap = require('enmap');
 const client = new Discord.Client();
 require('dotenv-flow').config();
 
-// I kept the config.json file even though I will be using .env for the rest of the series
-// only so you can see and know the differnce.
-
 const config = {
     token: process.env.TOKEN,
     owner: process.env.OWNER,
