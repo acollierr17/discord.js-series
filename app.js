@@ -5,9 +5,6 @@ require('dotenv-flow').config();
 
 const client = new Client();
 
-// I kept the config.json file even though I will be using .env for the rest of the series
-// only so you can see and know the differnce.
-
 client.commands = new Enmap();
 
 fs.readdir('./events/', (err, files) => {
