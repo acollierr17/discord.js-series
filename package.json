@@ -1,0 +1,25 @@
+{
+  "name": "lincoln",
+  "version": "1.0.0",
+  "description": "Follow along with my Discord.js Bot Development series on YouTube!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/acollierr17/discord.js-series.git"
+  },
+  "author": "acollierr17 <gamemaniac101@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/acollierr17/discord.js-series/issues"
+  },
+  "homepage": "https://github.com/acollierr17/discord.js-series#readme",
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.8.0"
+  }
+}
