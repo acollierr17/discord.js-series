@@ -19,7 +19,6 @@
   "dependencies": {
     "discord.js": "^11.4.2",
     "dotenv-flow": "^0.1.0",
-    "enmap": "^4.3.3",
     "mongoose": "^5.4.14",
     "node-fetch": "^2.2.0"
   },

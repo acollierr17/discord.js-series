@@ -1,13 +1,15 @@
-const { Client } = require('discord.js');
+const { Client, Collection } = require('discord.js');
 const fs = require('fs');
-const Enmap = require('enmap');
 require('dotenv-flow').config();
 
 const client = new Client();
 
-client.commands = new Enmap();
+require('./utils/functions')(client);
+
+client.commands = new Collection();
 
 client.mongoose = require('./utils/mongoose');
+client.config = require('./config');
 
 fs.readdir('./events/', (err, files) => {
   if (err) return console.error;
