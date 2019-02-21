@@ -7,6 +7,8 @@ const client = new Client();
 
 client.commands = new Enmap();
 
+client.mongoose = require('./utils/mongoose');
+
 fs.readdir('./events/', (err, files) => {
   if (err) return console.error;
   files.forEach(file => {
@@ -29,4 +31,5 @@ fs.readdir('./commands/', async (err, files) => {
     });
   });
 
+client.mongoose.init();
 client.login();
