@@ -17,7 +17,7 @@ exports.run = async (client, message, args, settings) => {
                 }
             }
 
-            message.channel.send(`Current prefix: \`${settings.prefix}\``);
+            message.channel.send(`Current prefix: \`${settings.prefix}\``)
             break;
         }
         case 'welcomeChannel': {
