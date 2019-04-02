@@ -25,7 +25,7 @@ exports.run = async (client, message, args, settings) => {
              * Channel validation. Check if the mentioned channel is a guild.
              * Want a hint? 
              * ```js
-             * let channel = message.mentions.channels.first();
+             * let channel = message.mentions.channels.find(c => c.name === updated);
              * 
              * // example of Collection#find (look below)
              * collection.find(val => val.username === 'Anthony');

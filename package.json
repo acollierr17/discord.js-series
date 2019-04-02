@@ -4,7 +4,9 @@
   "description": "Follow along with my Discord.js Bot Development series on YouTube!",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node .",
+    "test": "eslint \"./**/*.js\"",
+    "lint": "eslint --fix \"./**/*.js\""
   },
   "repository": {
     "type": "git",
