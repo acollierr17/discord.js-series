@@ -20,6 +20,8 @@ module.exports = async (client, message) => {
      * [x] Issue x amount of coins to user (between 1 - 5 coins)
      * [x] Get the current amount of coins the user has, add the issued amount of coins to the user
      * [x] Update the current amount of coins the user has in the database
+     * 
+     * Make sure to remove the console.log() statements before moving on. They're only there for development purposes
      */
 
     const messageCheck = Math.floor((Math.random() * 10)) + 1;
@@ -48,7 +50,7 @@ module.exports = async (client, message) => {
 async function updateCoins(client, member, amount) {
     const newProfile = {
         guildID: member.guild.id,
-        guildname: member.guild.name,
+        guildName: member.guild.name,
         userID: member.id,
         username: member.user.tag
     };
