@@ -1,3 +1,4 @@
+const { RichEmbed } = require("discord.js");
 exports.run = async (client, message, args, settings) => {
 
     if (!message.member.hasPermission('ADMINISTRATOR')) return;
@@ -21,63 +22,103 @@ exports.run = async (client, message, args, settings) => {
             break;
         }
         case 'welcomeChannel': {
-            /**
-             * Channel validation. Check if the mentioned channel is a guild.
-             * Want a hint? 
-             * ```js
-             * let channel = message.mentions.channels.first();
-             * 
-             * // example of Collection#find (look below)
-             * collection.find(val => val.username === 'Anthony');
-             * ```
-             * Remember when I talked about collections earlier in the video!
-             * https://discord.js.org/#/docs/main/stable/class/Collection?scrollTo=find
-             * https://anidiots.guide/understanding/collections
-             */
-
+        if (updated) {
+            const channel = message.mentions.channels.first();
+            if (!channel) {
+                message.channel.send(`Please mention a channel!`);
+                break;
+            }
+            try {
+                await client.updateGuild(message.guild, {
+                    welcomeChannel: channel.name,
+                });
+            }
+            catch(error) {
+                message.channel.send(`An error has occurred: **${error.message}**`);
+                break;
+            }
+        }
+            message.channel.send(`Current welcome channel: \`${settings.welcomeChannel}\``);
             break;
         }
         case 'welcomeMsg': {
-            /**
-             * Make sure the user specifically defines the {{user}} and {{guild}} parameters.
-             * Want a hint?
-             * ```js
-             * let foo = '{{bar}}';
-             * let message = 'Hello, {bar}';
-             * 
-             * if (foo.test(message)) {
-             *  console.log('Wooo');
-             * } else {
-             *  console.log('No...');
-             * }
-             * ```
-             */
-
+            if (updated) {
+                try {
+                    const userReg = /\{\{user\}\}/gi;
+                    const guildReg = /\{\{guild\}\}/gi;
+                    if (!userReg.test(updated) || !guildReg.test(updated)) {
+                        message.channel.send(
+                            !userReg.test(updated) && guildReg.test(updated) ? "Please specify the {{user}} variable!" : 
+                            !guildReg.test(updated) && userReg.test(updated) ? "Please specify the {{guild}} variable!" :
+                            "Please specify the {{guild}} variable and the {{user}} variable!"
+                        );
+                        break;
+                    }
+                    await client.updateGuild(message.guild, {
+                        welcomeMsg: updated,
+                    });
+                }
+                catch (err) {
+                    message.channel.send(`An error has occurred: **${err.message}**`);
+                    break;
+                }
+            }
             break;
         }
         case 'modRole': {
-            /**
-             * Make sure to do role validation? Need help? Refer to the "welcomeChannel" case statement above!
-             */
-
+            if (updated) {
+                const modRole = message.mentions.roles.first();
+                if (!modRole) {
+                    message.channel.send("Please mention a role!");
+                    break;
+                }
+                try {
+                    await client.updateGuild(message.guild, {
+                        modRole: modRole.name
+                    });
+                }
+                catch (err) {
+                    message.channel.send(`An error has occurred: **${err.message}**`);
+                    break;
+                }
+            }
+            message.channel.send(`Current Mod Role ${settings.modRole}`);
             break;
         }
         case 'adminRole': {
-            /**
-             * Make sure to do role validation? Need help? Refer to the "welcomeChannel" case statement above!
-             */
-            
+            if (updated) {
+                const adminRole = message.mentions.roles.first();
+                if (!adminRole) {
+                    message.channel.send("Please mention a role!");
+                    break;
+                }
+                try {
+                    await client.updateGuild(message.guild, {
+                        adminRole: adminRole.name
+                    });
+                }
+                catch (err) {
+                    message.channel.send(`An error has occurred: **${err.message}**`);
+                    break;
+                }
+            }
+            message.channel.send(`Current Mod Role ${settings.adminRole}`);
             break;
         }
         default: {
-            /**
-             * Want to go further? Use object destructuring to get the different properties from the MongoDB document
-             * and display them in the message below!
-             * 
-             * Object desctructuring: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-             */
-
-            message.channel.send(`Default settings: PLACEHOLDER`);
+            try {
+                let arr = [];
+                Object.keys(settings).forEach((setting) => {
+                    arr.push(`${setting}: \`${settings[setting]}\``);
+                });
+                const embed = new RichEmbed()
+                    .setTitle("Current Server Settings")
+                    .setDescription(arr.join('\n'));
+                message.channel.send(embed);
+                }
+            catch (err) {
+                message.channel.send(`An error occurred: **${err.message}**`);
+            }
             break;
         }
     }
