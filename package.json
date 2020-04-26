@@ -1,0 +1,30 @@
+{
+  "name": "lincoln",
+  "version": "1.0.0",
+  "description": "Follow along with my Discord.js Bot Development series on YouTube!",
+  "main": "app.js",
+  "scripts": {
+    "start": "node .",
+    "test": "eslint \"./**/*.js\"",
+    "lint": "eslint --fix \"./**/*.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/acollierr17/discord.js-series.git"
+  },
+  "author": "acollierr17 <gamemaniac101@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/acollierr17/discord.js-series/issues"
+  },
+  "homepage": "https://github.com/acollierr17/discord.js-series#readme",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "dotenv-flow": "^0.1.0",
+    "mongoose": "^5.4.14",
+    "node-fetch": "^2.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.8.0"
+  }
+}
